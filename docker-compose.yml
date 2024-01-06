@@ -1,0 +1,54 @@
+version: '3.8'
+
+services:
+  namenode:
+    build:
+      context: ./NameNode
+      dockerfile: Dockerfile
+    container_name: hpcnube-namenode
+    networks:
+      - hpcnube-net
+    ports:
+      - "9870:9870"
+    depends_on:
+      - dnnm
+
+  resourcemanager:
+    build:
+      context: ./ResourceManager
+      dockerfile: Dockerfile
+    container_name: hpcnube-resourcemanager
+    networks:
+      - hpcnube-net
+    ports:
+      - "8088:8088"
+    depends_on:
+      - namenode
+
+  dnnm:
+    build:
+      context: ./DataNode-NodeManager
+      dockerfile: Dockerfile
+    networks:
+      - hpcnube-net
+    environment:
+      - HADOOP_DATANODE_NODMANAGER_CONFIG=valuenstances
+
+  frontend:
+    build:
+      context: ./FrontEnd
+      dockerfile: Dockerfile
+    container_name: hpcnube-frontend
+    networks:
+      - hpcnube-net
+    ports:
+      - "2222:22"  # Adjust the port if needed
+    volumes:
+      - ./codigos:/home/luser/codigos
+      - ./datos:/home/luser/datos
+    depends_on:
+      - namenode
+
+networks:
+  hpcnube-net:
+    driver: bridge
