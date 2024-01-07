@@ -13,6 +13,7 @@ ENV REPOSITORY https://dlcdn.apache.org/hadoop/common
 RUN echo "$LOG_TAG Actualizando e instalando paquetes básicos" && \
     apt-get update && \
     apt-get install -y --no-install-recommends openjdk-8-jre python3 curl locales && \
+    apt-get install -y nano && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists
 

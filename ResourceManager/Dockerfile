@@ -21,6 +21,8 @@ RUN echo "$LOG_TAG Copia los ficheros de configuracion y el script de inicio"
 COPY Config-files/core-site.xml ${HADOOP_CONF_DIR}/core-site.xml
 COPY Config-files/yarn-site-resourcemanager.xml ${HADOOP_CONF_DIR}/yarn-site.xml
 COPY Config-files/mapred-site-resourcemanager.xml ${HADOOP_CONF_DIR}/mapred-site.xml
+COPY Config-files/yarn.include ${HADOOP_HOME}/etc/hadoop/yarn.include
+COPY Config-files/yarn.exclude ${HADOOP_HOME}/etc/hadoop/yarn.exclude
 
 # Script de inicio 
 COPY Config-files/start-daemons-resourcemanager.sh ${BASE_DIR}/start-daemons.sh

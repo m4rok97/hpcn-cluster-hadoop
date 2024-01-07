@@ -5,6 +5,11 @@ MAINTAINER Tomas <tf.pena@usc.es>
 # Switch to root user
 USER root
 
+# Install nano
+RUN apt-get update && \
+    apt-get install -y nano && \
+    rm -rf /var/lib/apt/lists/*
+
 # Define valores de entorno
 ENV HADOOP_VERSION 3.3.6
 ENV LOG_TAG "[NameNode Hadoop_${HADOOP_VERSION}]:"
@@ -26,6 +31,8 @@ RUN echo "$LOG_TAG Crea directorio para los ficheros de log" && \
 RUN echo "$LOG_TAG Copia los ficheros de configuracion y el script de inicio"
 COPY Config-files/core-site.xml ${HADOOP_CONF_DIR}/core-site.xml
 COPY Config-files/hdfs-site-namenode.xml ${HADOOP_CONF_DIR}/hdfs-site.xml
+COPY Config-files/dfs.include ${HADOOP_HOME}/etc/hadoop/dfs.include
+COPY Config-files/dfs.exclude ${HADOOP_HOME}/etc/hadoop/dfs.exclude
 
 # Script de inicio 
 COPY Config-files/start-daemons-namenode.sh ${BASE_DIR}/start-daemons.sh

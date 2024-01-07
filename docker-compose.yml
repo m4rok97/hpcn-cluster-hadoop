@@ -48,6 +48,22 @@ services:
       - ./datos:/home/luser/datos
     depends_on:
       - namenode
+  
+  # backupnode:
+  #   build:
+  #     context: ./BackupNode  # Ajusta la ruta según sea necesario
+  #     dockerfile: Dockerfile
+  #   container_name: hpcnube-backupnode
+  #   networks:
+  #     - hpcnube-net
+  #   # Publica los puertos necesarios para el servicio de backup
+  #   ports:
+  #     - "2223:50100"
+  #     - "2224:50105"
+  #   volumes:
+  #   - ./backupnode-data:/var/data/hadoop/hdfs/backups
+  #   depends_on:
+  #     - namenode
 
 networks:
   hpcnube-net:

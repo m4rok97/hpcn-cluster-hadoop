@@ -43,5 +43,15 @@
     <value>hpcnube-namenode:9870</value>
     <final>true</final>
   </property>
+  <property>
+    <name>dfs.hosts</name>
+    <value>/opt/bd/hadoop/etc/hadoop/dfs.include</value>
+    <final>true</final>
+  </property>
+  <property>
+    <name>dfs.hosts.exclude</name>
+    <value>/opt/bd/hadoop/etc/hadoop/dfs.exclude</value>
+    <final>true</final>
+  </property>
 </configuration>
 

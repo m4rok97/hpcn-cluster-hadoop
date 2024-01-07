@@ -48,5 +48,15 @@
         <value>2560</value>
         <final>true</final>
       </property>
+      <property>
+        <name>yarn.resourcemanager.nodes.include-path</name>
+        <value>/opt/bd/hadoop/etc/hadoop/yarn.include</value>
+        <final>true</final>
+      </property>
+      <property>
+        <name>yarn.resourcemanager.nodes.exclude-path</name>
+        <value>/opt/bd/hadoop/etc/hadoop/yarn.exclude</value>
+        <final>true</final>
+      </property>
 </configuration>
 
